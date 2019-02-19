@@ -25,28 +25,18 @@ Bottom6 <- tail(dataset_merge)
 
 #Get NA count from each column
 
-sum(is.na(dataset_merge$Brew_ID))
-#[1] 0
-sum(is.na(dataset_merge$Name.x))
-#[1] 0
-sum(is.na(dataset_merge$City))
-#[1] 0
-sum(is.na(dataset_merge$State))
-#[1] 0
-sum(is.na(dataset_merge$Name.y))
-#[1] 0
-sum(is.na(dataset_merge$Beer_ID))
-#[1] 0
-sum(is.na(dataset_merge$ABV))
-#[1] 62
-sum(is.na(dataset_merge$IBU))
-#[1] 1005
-sum(is.na(dataset_merge$Brewery_id))
-#[1] 0
-sum(is.na(dataset_merge$Style))
-#[1] 0
-sum(is.na(dataset_merge$Ounces))
-#[1] 0
+ExamineNA <- function(column){
+    
+                  testNA <- sum(is.na(dataset_merge[column]))
+                  print (column)
+                  print (testNA)
+                }
+  
+  
+ 
+for (x in names(dataset_merge)){ ExamineNA(x)}
+
+
 
 
 
