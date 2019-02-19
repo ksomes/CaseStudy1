@@ -37,6 +37,11 @@ ExamineNA <- function(column){
 for (x in names(dataset_merge)){ ExamineNA(x)}
 
 
+#find number of breweries in state
+library(plyr)
+count(dataset_merge,"State")
+
+
 
 
 
