@@ -60,16 +60,16 @@ IBU_St <- describeBy(dataset_merge$IBU, dataset_merge$State, mat=T)
 
 #bar plot of Median Alcohol by volumne
 ABV_plot <- ggplot(ABV_St, aes(x=reorder(ABV_St$group,-ABV_St$median), y=ABV_St$median, fill=ABV_St$group1)) +
-  geom_bar(stat="identity") + labs(title ="Median Alcohol by Volume in States", x= "States", y="ABV", fill="States") + theme(text = element_text(size=7),axis.text.x = element_text(angle=45, hjust=1))
+  geom_bar(stat="identity") + labs(title ="Median Alcohol by Volume in States", x= "States", y="ABV", fill="States") + theme(text = element_text(size=9),axis.text.x = element_text(angle=90, hjust=1))
 
 #bar plot of Median IBU in states
 IBU_plot <- ggplot(IBU_St, aes(x=reorder(IBU_St$group,-IBU_St$median), y=IBU_St$median, fill=IBU_St$group1)) +
-  geom_bar(stat="identity") + labs(title ="Median Intl Bitterness in States", x= "States", y="IBU", fill="States") + theme(text = element_text(size=7),axis.text.x = element_text(angle=45, hjust=1))	 
+  geom_bar(stat="identity") + labs(title ="Median Intl Bitterness in States", x= "States", y="IBU", fill="States") + theme(text = element_text(size=9),axis.text.x = element_text(angle=90, hjust=1))	 
 
-#max ABV shown to be Colorado
+#Kentucky KY and DC show to be hightes  median ABV
 summary(ABV_St)
 
-#max IBU shown to be Colorado
+#max IBU shown to be Maine (ME)
 summary(IBU_St)
 
 #merge by group1 (states) for plot
