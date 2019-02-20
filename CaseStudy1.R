@@ -89,7 +89,7 @@ med_plot_by_state <- ggplot(ABV_IBU_merge, aes(x = ABV_IBU_merge$group)) +
   geom_point(aes(y = ABV_IBU_merge$median.x *1000), colour="blue") + 
   geom_point(aes(y = ABV_IBU_merge$median.y), colour = "red") + 
   ylab(label="Alcohol by volume and Intl Bitterness") + 
-  xlab("States") + theme(text = element_text(size=7),axis.text.x = element_text(angle=45, hjust=1)) + ggtitle("Median Alcohol by volume(Blue) x 1000 and International Bitterness(Red) by State")
+  xlab("States") + theme(text = element_text(size=9),axis.text.x = element_text(angle=90, hjust=1)) + ggtitle("Median Alcohol by volume(Blue) x 1000 and International Bitterness(Red) by State")
 
 #R standard for comparison
 plot(dataset_merge$ABV, dataset_merge$IBU, main="Alcohol by Vol vs Bitterness", xlab="ABV", ylab="IBU")
