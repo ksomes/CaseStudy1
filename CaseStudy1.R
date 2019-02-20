@@ -21,7 +21,8 @@ Top6 <- head(dataset_merge,6)
 Bottom6 <- tail(dataset_merge)
 
 #Rename columns 
-#names(dataset_merge <- c("Brew_ID","Company_Name","City","State","Beer_Name","Beer_ID","ABV","Brew_ID","Beer_Style","OUnces"))
+names(dataset_merge) <- c("Brew_ID","Company_Name","City","State","Beer_Name","Beer_ID","ABV","IBU", "Brew_ID","Beer_Style","OUnces")
+Top10 <- head(dataset_merge)
 
 #Get NA count from each column
 
@@ -39,10 +40,47 @@ for (x in names(dataset_merge)){ ExamineNA(x)}
 
 #find number of breweries in state
 library(plyr)
-count(dataset_merge,"State")
+
+BreweryState <- count(dataset_merge,"State")
+
+#Plot of Breweries per State
+library(ggplot2)
+
+b1 <- ggplot(BreweryState, aes(x=reorder(BreweryState$State,-BreweryState$freq), y=BreweryState$freq, fill=BreweryState$State)) +
+  
+geom_bar(stat="identity") + labs(title ="Breweries in States", x= "States", y="Number of Breweries", fill="States") + theme(text = element_text(size=7),axis.text.x = element_text(angle=90, hjust=1))
+
+b1
+
+#Compute the median alcohol content and international bitterness unit for each state. Plot a bar chart to compare. 
+library(psych)
+ABV_St <- describeBy(dataset_merge$ABV, dataset_merge$State, mat=T)
+IBU_St <- describeBy(dataset_merge$IBU, dataset_merge$State, mat=T)
+
+#bar plot of Median Alcohol by volumne
+ABV_plot <- ggplot(ABV_St, aes(x=reorder(ABV_St$group,-ABV_St$median), y=ABV_St$median, fill=ABV_St$group1)) +
+  geom_bar(stat="identity") + labs(title ="Median Alcohol by Volume in States", x= "States", y="ABV", fill="States") + theme(text = element_text(size=7),axis.text.x = element_text(angle=45, hjust=1))
+
+#bar plot of Median IBU in states
+IBU_plot <- ggplot(IBU_St, aes(x=reorder(IBU_St$group,-IBU_St$median), y=IBU_St$median, fill=IBU_St$group1)) +
+  geom_bar(stat="identity") + labs(title ="Median Intl Bitterness in States", x= "States", y="IBU", fill="States") + theme(text = element_text(size=7),axis.text.x = element_text(angle=45, hjust=1))	 
+
+#max ABV shown to be Colorado
+summary(ABV_St)
+
+#max IBU shown to be Colorado
+summary(IBU_St)
+
+#merge by group1 (states) for plot
+ABV_IBU_merge <- merge(ABV_St,IBU_St, by="group1",all=TRUE)
 
 
-
+#scatter plot of ABV and IBU
+med_plot <- ggplot(ABV_IBU_merge, aes(x = ABV_IBU_merge$group)) + 
+  geom_point(aes(y = ABV_IBU_merge$median.x *100), colour="blue") + 
+  geom_point(aes(y = ABV_IBU_merge$median.y), colour = "red") + 
+  ylab(label="Alcohol by volume and Intl Bitterness") + 
+  xlab("States") + theme(text = element_text(size=7),axis.text.x = element_text(angle=45, hjust=1)) + ggtitle("Median Alcohol by volume(Blue) x 100 vs International Bitterness(Red)")
 
 
 
