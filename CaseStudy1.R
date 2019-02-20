@@ -29,6 +29,7 @@ Top10 <- head(dataset_merge)
 ExamineNA <- function(column){
     
                   testNA <- sum(is.na(dataset_merge[column]))
+                  
                   print (column)
                   print (testNA)
                 }
@@ -76,11 +77,25 @@ ABV_IBU_merge <- merge(ABV_St,IBU_St, by="group1",all=TRUE)
 
 
 #scatter plot of ABV and IBU
-med_plot <- ggplot(ABV_IBU_merge, aes(x = ABV_IBU_merge$group)) + 
-  geom_point(aes(y = ABV_IBU_merge$median.x *100), colour="blue") + 
+
+med_scatter <- ggplot(ABV_IBU_merge, aes(x=ABV_IBU_merge$median.x, y=ABV_IBU_merge$median.y)) + geom_point(color="blue") + labs(title="Median Alcohol by Volume vs International Bitterness",x="Median Alcohol by Volume", y = "Median Intl Bitterness")+   theme_classic()  
+
+#scatter w/ regression line
+med_scat_reg <- ggplot(ABV_IBU_merge, aes(x=ABV_IBU_merge$median.x, y=ABV_IBU_merge$median.y)) + geom_point(color="blue") + labs(title="Median Alcohol by Volume vs International Bitterness",x="Median Alcohol by Volume", y = "Median Intl Bitterness")+   theme_classic() + stat_ellipse() + geom_smooth(method=lm)
+
+
+#point bplot by state
+med_plot_by_state <- ggplot(ABV_IBU_merge, aes(x = ABV_IBU_merge$group)) + 
+  geom_point(aes(y = ABV_IBU_merge$median.x *1000), colour="blue") + 
   geom_point(aes(y = ABV_IBU_merge$median.y), colour = "red") + 
   ylab(label="Alcohol by volume and Intl Bitterness") + 
-  xlab("States") + theme(text = element_text(size=7),axis.text.x = element_text(angle=45, hjust=1)) + ggtitle("Median Alcohol by volume(Blue) x 100 vs International Bitterness(Red)")
+  xlab("States") + theme(text = element_text(size=7),axis.text.x = element_text(angle=45, hjust=1)) + ggtitle("Median Alcohol by volume(Blue) x 1000 and International Bitterness(Red) by State")
 
+#R standard for comparison
+plot(dataset_merge$ABV, dataset_merge$IBU, main="Alcohol by Vol vs Bitterness", xlab="ABV", ylab="IBU")
 
+#summary stats on ABV
+summary(dataset_merge$ABV)
+
+summary(ABV_St)
 
