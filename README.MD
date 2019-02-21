@@ -1,7 +1,8 @@
 Doing Data Science: Case Study 1
 
-RAW Data:
-    Beers.csv:
+RAW Data
+
+Beers.csv:
       Name: Name of the beer.
       Beer_ID: Unique identifier of the beer.
       ABV: Alcohol by volume of the beer.
@@ -9,7 +10,8 @@ RAW Data:
       Brewery_ID: Brewery id associated with the beer.
       Style: Style of the beer.
       Ounces: Ounces of beer. 
-    Breweries.csv:
+
+Breweries.csv:
       Brew_ID: Unique identifier of the brewery.
       Name: Name of the brewery.
       City: City where the brewery is located.
