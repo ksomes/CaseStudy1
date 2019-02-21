@@ -11,6 +11,17 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+<!-- install packages -->
+```{r echo=FALSE, include=FALSE}
+
+    install.packages('dplyr', repos="http://cran.us.r-project.org")
+    install.packages('knitr', repos="http://cran.us.r-project.org")
+    install.packages('rvest', repos="http://cran.us.r-project.org")
+    install.packages('ggplot2', repos="http://cran.us.r-project.org")
+    install.packages('psych', repos="http://cran.us.r-project.org")
+
+```
       **libraries used**
       
         library(dplyr)
