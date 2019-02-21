@@ -2,14 +2,23 @@
 title: "CaseStudy1"
 author: "Karen, Samuel, Laurence"
 date: "February 8, 2019"
-output: html_document
+output: 
+        html_document:
+        keep_md: yes
 ---
 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
+      **libraries used**
+      
+        library(dplyr)
+        library(knitr)
+        library(rvest)
+        library(ggplot2)
+        library(psych)
+      
 
 
 ## Load dataset into R.
